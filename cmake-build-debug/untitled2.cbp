@@ -130,6 +130,12 @@
 			<Option target="SFMLDemo"/>
 			<Option target="untitled2"/>
 		</Unit>
+		<Unit filename="C:/Users/M1k3/CLionProjects/untitled2/render/Sprite.cpp">
+			<Option target="SFMLDemo"/>
+		</Unit>
+		<Unit filename="C:/Users/M1k3/CLionProjects/untitled2/render/Sprite.h">
+			<Option target="SFMLDemo"/>
+		</Unit>
 		<Unit filename="C:/Users/M1k3/CLionProjects/untitled2/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

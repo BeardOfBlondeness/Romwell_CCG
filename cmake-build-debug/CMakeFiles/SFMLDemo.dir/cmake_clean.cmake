@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/SFMLDemo.dir/main.cpp.obj"
+  "CMakeFiles/SFMLDemo.dir/render/Sprite.cpp.obj"
   "SFMLDemo.pdb"
   "SFMLDemo.exe"
   "SFMLDemo.exe.manifest"

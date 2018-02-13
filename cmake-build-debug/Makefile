@@ -165,6 +165,33 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles\untitled2.dir\build.make CMakeFiles/untitled2.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+render/Sprite.obj: render/Sprite.cpp.obj
+
+.PHONY : render/Sprite.obj
+
+# target to build an object file
+render/Sprite.cpp.obj:
+	$(MAKE) -f CMakeFiles\SFMLDemo.dir\build.make CMakeFiles/SFMLDemo.dir/render/Sprite.cpp.obj
+.PHONY : render/Sprite.cpp.obj
+
+render/Sprite.i: render/Sprite.cpp.i
+
+.PHONY : render/Sprite.i
+
+# target to preprocess a source file
+render/Sprite.cpp.i:
+	$(MAKE) -f CMakeFiles\SFMLDemo.dir\build.make CMakeFiles/SFMLDemo.dir/render/Sprite.cpp.i
+.PHONY : render/Sprite.cpp.i
+
+render/Sprite.s: render/Sprite.cpp.s
+
+.PHONY : render/Sprite.s
+
+# target to generate assembly for a file
+render/Sprite.cpp.s:
+	$(MAKE) -f CMakeFiles\SFMLDemo.dir\build.make CMakeFiles/SFMLDemo.dir/render/Sprite.cpp.s
+.PHONY : render/Sprite.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -178,6 +205,9 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... render/Sprite.obj
+	@echo ... render/Sprite.i
+	@echo ... render/Sprite.s
 .PHONY : help
 
 
