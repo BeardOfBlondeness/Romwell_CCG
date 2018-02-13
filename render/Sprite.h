@@ -1,15 +1,22 @@
-//
-// Created by M1k3 on 13/02/2018.
-//
+#pragma once
+#include <SFML/Graphics.hpp>
+#include <string>
+#include <cassert>
+#include "../window.h"
 
-#ifndef UNTITLED2_SPRITE_H
-#define UNTITLED2_SPRITE_H
-
+using namespace std;
 
 class Sprite {
-
-    Sprite();
+public:
+    Sprite(string path);
+    Sprite(string path, int x, int y);
+    Sprite(string path, int x, int y, int width, int height);
+    ~Sprite();
+    void InitiateSprite();
+    void Draw();
+protected:
+    sf::Texture tex;
+    sf::Sprite renderSprite;
+    string path;
+    int x, y, width, height;
 };
-
-
-#endif //UNTITLED2_SPRITE_H

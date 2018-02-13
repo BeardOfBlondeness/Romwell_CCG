@@ -73,4 +73,6 @@ CMakeFiles/untitled2.dir/main.cpp.obj: C:/Program\ Files\ (x86)/SFML/include/SFM
 CMakeFiles/untitled2.dir/main.cpp.obj: C:/Program\ Files\ (x86)/SFML/include/SFML/Window/WindowHandle.hpp
 CMakeFiles/untitled2.dir/main.cpp.obj: C:/Program\ Files\ (x86)/SFML/include/SFML/Window/WindowStyle.hpp
 CMakeFiles/untitled2.dir/main.cpp.obj: ../main.cpp
+CMakeFiles/untitled2.dir/main.cpp.obj: ../render/Sprite.h
+CMakeFiles/untitled2.dir/main.cpp.obj: ../window.h
 

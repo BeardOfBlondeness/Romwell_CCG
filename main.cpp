@@ -1,18 +1,12 @@
 #include <SFML/Graphics.hpp>
-#include <cassert>
+#include "render/Sprite.h"
 
 int main()
 {
-    sf::RenderWindow window(sf::VideoMode(1920, 1080), "Pong");
 
-    sf::Texture tex;
-    sf::Sprite cartoon;
+    Sprite cartoon("cartoon.png");
 
-    assert(tex.loadFromFile("cartoon.png"));
-
-    cartoon.setTexture(tex);
-
-    sf::Event event;
+    cartoon.InitiateSprite();
     while (window.isOpen())
     {
         while (window.pollEvent(event))
@@ -21,7 +15,7 @@ int main()
                 window.close();
         }
         window.clear();
-        window.draw(cartoon);
+        cartoon.Draw();
         window.display();
     }
 
