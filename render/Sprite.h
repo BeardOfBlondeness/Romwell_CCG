@@ -1,9 +1,7 @@
 #pragma once
-#include <SFML/Graphics.hpp>
 #include <string>
 #include <cassert>
-#include "../window.h"
-
+#include "../global.h"
 using namespace std;
 
 class Sprite {
