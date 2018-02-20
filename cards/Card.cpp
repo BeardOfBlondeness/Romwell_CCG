@@ -7,13 +7,13 @@ Card::Card(string name, string rarity, int classType, int baseMana, int baseHeal
 this->name = name;
 this->rarity = rarity;
 this->classType = classType;
-this->manaCost = manaCost;
-this->baseHealth = health;
+this->baseMana = baseMana;
+this->baseHealth = baseHealth;
 this->baseDamage = baseDamage;
 this->imagePath = imagePath;
 currentDamage = baseDamage;
 currentHealth = baseHealth;
-currentMana = manCost;
+currentMana = baseMana;
 }
 
 int Card::getBaseDamage() {
