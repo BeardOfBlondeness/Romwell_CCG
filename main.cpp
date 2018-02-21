@@ -27,6 +27,7 @@ int main()
         }
         window.clear();
         m.DrawBackground();
+        m.ButtonOperators();
         window.display();
     }
     return 0;

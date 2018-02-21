@@ -12,6 +12,14 @@ Menu::Menu() {
   play.InitiateSprite();
   deckBuilder.InitiateSprite();
   quit.InitiateSprite();
+
+  if (!rain.openFromFile("res/menu/rain.wav")){
+    std::cout << "Error..." << std::endl;
+  } else{
+    rain.setLoop(true);
+    rain.setVolume(50);
+    rain.play();
+  }
 }
 
 Menu::~Menu() {
@@ -24,6 +32,9 @@ void Menu::DrawBackground() {
     IncrementBackgroundSprite();
     lastDrawTime = clock1.getElapsedTime().asMilliseconds();
   }
+}
+
+void Menu::ButtonOperators() {
   play.Hover();
   deckBuilder.Hover();
   quit.Hover();
@@ -33,9 +44,9 @@ void Menu::DrawBackground() {
   deckBuilder.Draw();
   quit.Draw();
 
-  if(play.isClicked()) {
-    std::cout << "Pressed";
-  }
+  play.isClicked();
+  deckBuilder.isClicked();
+  if(quit.isClicked()==2)window.close();
 }
 
 void Menu::KeepFrameCount() {
