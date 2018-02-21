@@ -1,11 +1,12 @@
 #define SFML_STATIC
 #include "render/Sprite.h"
-#include "game/Game.h"
+#include "Menu.h"
 #include <stdlib.h>
 #include <time.h>
 #include <iostream>
 using namespace std;
-//Initiates the window and window eventsss
+
+//Initiates the window and window events
 sf::RenderWindow window(sf::VideoMode(1920, 1080), "Romwell CCG");
 sf::Event event;
 
@@ -15,16 +16,8 @@ sf::Event event;
 int main()
 {
     srand (time(NULL));
-    Sprite cartoon("cartoon.png");
-    int arr1[31];
-    int arr2[31];
-    for(int i = 0; i<31; i++) {
-      arr1[i] = i;
-      arr2[i] = i;
-    }
-    Game g(arr1, arr2);
-    g.WaitForTurn(false);
-    cartoon.InitiateSprite();
+    Menu m;
+    window.setFramerateLimit(60);
     while (window.isOpen())
     {
         while (window.pollEvent(event))
@@ -33,7 +26,7 @@ int main()
                 window.close();
         }
         window.clear();
-        cartoon.Draw();
+        m.DrawBackground();
         window.display();
     }
 

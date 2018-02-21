@@ -1,5 +1,7 @@
 #include "../global.h"
+#include "../render/Sprite.h"
 #include <vector>
+
 using namespace std;
 
 class Game {
@@ -16,4 +18,5 @@ private:
   int *randomisedOrder = new int[deckSize];
   bool playerTurn;
   vector<int> hand1, hand2, board1, board2;
+  //Sprite board = new Sprite("res/board.png", 0, 0, 1920, 1080);
 };

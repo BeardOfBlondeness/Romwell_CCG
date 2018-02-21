@@ -4,6 +4,8 @@
 * in the main.cpp
 */
 #include <SFML/Graphics.hpp>
+#include <string>
 #include <iostream>
+#include <ctime>
 extern sf::RenderWindow window;
 extern sf::Event event;

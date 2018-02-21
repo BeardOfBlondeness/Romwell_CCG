@@ -1,0 +1,5 @@
+g++: error: render/Sprite.cpp: No such file or directory
+g++: error: render/Button.cpp: No such file or directory
+g++: error: cards/Card.cpp: No such file or directory
+g++: error: game/Game.cpp: No such file or directory
+g++: error: Menu.cpp: No such file or directory

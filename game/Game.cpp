@@ -10,9 +10,10 @@ Game::Game(int deck1[], int deck2[]) {
 }
 
 Game::~Game() {
-  std::cout << "Deleting stuff";
+  std::cout << "Deleting initialised memory space for Game";
   delete [] randomisedOrder;
 }
+
 bool Game::WaitForTurn(bool playerTurn) {
   return 0;
 }
@@ -42,8 +43,7 @@ int* Game::getDeck(int deck) {
 
 bool Game::vectorContains(vector<int> vec, int val) {
   for(int i=0;i<vec.size();i++) {
-    if(vec.at(i) == val)
-      return true;
+    if(vec.at(i) == val) return true;
   }
   return false;
 }
