@@ -8,6 +8,8 @@ public:
 private:
   int offsetX;
   int offsetY;
-  bool isHovered = false;
+  int clickOffsetX = offsetX/2;
+  int clickOffsetY = offsetY/2;
+  bool isHovered = false, mouseDown = false;
   sf::Vector2i pos;
 };

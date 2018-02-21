@@ -32,6 +32,10 @@ void Menu::DrawBackground() {
   play.Draw();
   deckBuilder.Draw();
   quit.Draw();
+
+  if(play.isClicked()) {
+    std::cout << "Pressed";
+  }
 }
 
 void Menu::KeepFrameCount() {
