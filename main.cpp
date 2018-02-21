@@ -29,8 +29,5 @@ int main()
         m.DrawBackground();
         window.display();
     }
-
-    int pause;
-    cin >> pause;
     return 0;
 }
