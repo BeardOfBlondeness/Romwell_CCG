@@ -7,6 +7,16 @@ Game::Game(int deck1[], int deck2[]) {
   this->deck2 = randomiseDeckOrder(deck2);
   board1.push_back(deck1[0]);
   board2.push_back(deck2[0]);
+  board.init("res/game/background.png", 0, 0, 1920, 1080);
+  gameBegin = true;
+}
+
+/*
+*TODO delete this
+*/
+Game::Game() {
+  board.init("res/game/background.png", 0, 0, 1920, 1080);
+  gameBegin = true;
 }
 
 Game::~Game() {
@@ -46,4 +56,15 @@ bool Game::vectorContains(vector<int> vec, int val) {
     if(vec.at(i) == val) return true;
   }
   return false;
+}
+
+void Game::Run() {
+  board.Draw();
+  if(gameBegin)
+    placeDecks();
+  }
+}
+
+void placeDecks() {
+
 }

@@ -86,7 +86,7 @@ void Menu::State() {
   if(state == 0) {
     DrawBackground();
     ButtonOperators();
-  }else if(state == 2) {
-
+  }else if(state == 1) {
+    g.Run();
   }
 }

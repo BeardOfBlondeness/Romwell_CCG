@@ -1,6 +1,7 @@
 #include "global.h"
 #include "render/Sprite.h"
 #include "render/Button.h"
+#include "game/Game.h"
 #include <SFML/Audio.hpp>
 
 class Menu {
@@ -23,4 +24,5 @@ private:
   double lastDrawTime = 0, frameLength = 1000/24;
   sf::Clock clock1;
   sf::Music rain;
+  Game g;
 };

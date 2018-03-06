@@ -14,6 +14,7 @@ void Sprite::init(string path, int x, int y, int width, int height) {
       this->width = width;
       this->height = height;
       renderSprite.setPosition(x, y);
+      InitiateSprite();
 }
 
 Sprite::Sprite(string path) {
@@ -33,6 +34,7 @@ Sprite::Sprite(string path, int x, int y, int width, int height) {
     this->width = width;
     this->height = height;
     renderSprite.setPosition(x, y);
+    InitiateSprite();
 }
 
 Sprite::~Sprite() {
