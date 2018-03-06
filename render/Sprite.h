@@ -10,6 +10,7 @@ public:
     Sprite(string path, int x, int y);
     Sprite(string path, int x, int y, int width, int height);
     void init(string path, int x, int y, int width, int height);
+    void init(string path, int x, int y);
     ~Sprite();
     void setRect(int x, int y, int width, int height);
     void InitiateSprite();
@@ -17,6 +18,8 @@ public:
     void setSize(float x, float y);
     void setPos(int x, int y);
     int getXRect();
+    int getYPos();
+    int getXPos();
 protected:
     sf::Texture tex;
     sf::Sprite renderSprite;

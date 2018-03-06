@@ -7,7 +7,15 @@ Game::Game(int deck1[], int deck2[]) {
   this->deck2 = randomiseDeckOrder(deck2);
   board1.push_back(deck1[0]);
   board2.push_back(deck2[0]);
-  board.init("res/game/background.png", 0, 0, 1920, 1080);
+  boardImage.init("res/game/background.png", 0, 0, 1920, 1080);
+  for(int i = 0; i < deckSize-1; i++) {
+    deck1Image[i].init("res/game/cardBack.png", 1700, -410);
+    deck1Image[i].setSize(deckScales, deckScales);
+    deck2Image[i].init("res/game/cardBack.png", 1700, 1480);
+    deck2Image[i].setSize(deckScales, deckScales);
+  }
+  entryAnimationDeck = true;
+  cardNum = 0;
   gameBegin = true;
 }
 
@@ -15,13 +23,23 @@ Game::Game(int deck1[], int deck2[]) {
 *TODO delete this
 */
 Game::Game() {
-  board.init("res/game/background.png", 0, 0, 1920, 1080);
+  boardImage.init("res/game/background.png", 0, 0, 1920, 1080);
   gameBegin = true;
+  entryAnimationDeck = true;
+  for(int i = 0; i < deckSize-1; i++) {
+    deck1Image[i].init("res/game/cardBack.png", 1653, -400);
+    deck1Image[i].setSize(deckScales, deckScales);
+    deck2Image[i].init("res/game/cardBack.png", 1649, 1180);
+    deck2Image[i].setSize(deckScales, deckScales);
+  }
+  cardNum = 0;
 }
 
 Game::~Game() {
   std::cout << "Deleting initialised memory space for Game";
   delete [] randomisedOrder;
+  delete [] deck1Image;
+  delete [] deck2Image;
 }
 
 bool Game::WaitForTurn(bool playerTurn) {
@@ -59,12 +77,39 @@ bool Game::vectorContains(vector<int> vec, int val) {
 }
 
 void Game::Run() {
-  board.Draw();
+  boardImage.Draw();
   if(gameBegin)
     placeDecks();
+  drawDecks();
+}
+
+void Game::placeDecks() {
+  if(entryAnimationDeck) {
+    if(deck1Image[cardNum].getYPos() < 03)
+      deck1Image[cardNum].setPos(deck1Image[cardNum].getXPos(), deck1Image[cardNum].getYPos()+80);
+    else {
+      deck1Image[cardNum].setPos(deck1Image[cardNum].getXPos(), 105);
+      cardNum++;
+      if(cardNum > 30) {
+        entryAnimationDeck = false;
+        cardNum = 0;
+      }
+    }
+  } else {
+    if(deck2Image[cardNum].getYPos() > 760)
+      deck2Image[cardNum].setPos(deck2Image[cardNum].getXPos(), deck2Image[cardNum].getYPos()-80);
+    else {
+      deck2Image[cardNum].setPos(deck2Image[cardNum].getXPos(), 680);
+      cardNum++;
+      if(cardNum > 30)
+        gameBegin = false;
+    }
   }
 }
 
-void placeDecks() {
-
+void Game::drawDecks() {
+  for(int i = 0; i < deckSize-1; i++) {
+    deck1Image[i].Draw();
+    deck2Image[i].Draw();
+  }
 }

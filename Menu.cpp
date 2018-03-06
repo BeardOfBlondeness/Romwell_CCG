@@ -12,11 +12,6 @@ Menu::Menu() {
   play.init(playPath, 710, 400, 500, 200);
   deckBuilder.init(deckBuilderPath, 710, 600, 500, 200);
   quit.init(quitPath, 710, 800, 500, 200);
-  title.InitiateSprite();
-  background.InitiateSprite();
-  play.InitiateSprite();
-  deckBuilder.InitiateSprite();
-  quit.InitiateSprite();
   if (!rain.openFromFile("res/menu/rain.wav")){
     std::cout << "Error..." << std::endl;
   } else{

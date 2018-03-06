@@ -25,6 +25,8 @@ void Button::init(string path, int x, int y, int width, int height) {
   offsetY = height/20;
   clickOffsetX = offsetX/2;
   clickOffsetY = offsetY/2;
+  originalX = x;
+  originalY = y;
 }
 
 void Button::Hover() {
@@ -32,13 +34,13 @@ void Button::Hover() {
   if(pos.x > x && pos.y > y && pos.x < x+width && pos.y < y+height) {
     if(!isHovered) {
       setSize(1.1, 1.1);
-      setPos(x-offsetX, y-offsetY);
+      setPos(originalX-offsetX,originalY-offsetY);
       isHovered = true;
     }
   } else {
     if(isHovered) {
       setSize(1, 1);
-      setPos(x, y);
+      setPos(originalX, originalY);
       isHovered = false;
     }
   }

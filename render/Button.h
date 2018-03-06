@@ -6,6 +6,8 @@ public:
   int isClicked();
   void Hover();
 private:
+  int originalX;
+  int originalY;
   int offsetX;
   int offsetY;
   int clickOffsetX;

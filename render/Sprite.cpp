@@ -25,6 +25,16 @@ Sprite::Sprite(string path, int x, int y) {
     this->path = path;
     this->x = x;
     this->y = y;
+    renderSprite.setPosition(x, y);
+    InitiateSprite();
+}
+
+void Sprite::init(string path, int x , int y) {
+    this->path = path;
+    this->x = x;
+    this->y = y;
+    renderSprite.setPosition(x, y);
+    InitiateSprite();
 }
 
 Sprite::Sprite(string path, int x, int y, int width, int height) {
@@ -51,6 +61,8 @@ void Sprite::setSize(float x, float y) {
 }
 
 void Sprite::setPos(int xPos, int yPos) {
+  x = xPos;
+  y = yPos;
   renderSprite.setPosition(xPos, yPos);
 }
 
@@ -66,4 +78,12 @@ void Sprite::setRect(int x, int y, int width, int height) {
 
 int Sprite::getXRect() {
   return xRect;
+}
+
+int Sprite::getYPos() {
+  return y;
+}
+
+int Sprite::getXPos() {
+  return x;
 }
