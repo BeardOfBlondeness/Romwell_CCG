@@ -26,8 +26,7 @@ int main()
                 window.close();
         }
         window.clear();
-        m.DrawBackground();
-        m.ButtonOperators();
+        m.State();
         window.display();
     }
     return 0;

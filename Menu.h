@@ -11,13 +11,14 @@ public:
   void ButtonOperators();
   void KeepFrameCount();
   void IncrementBackgroundSprite();
+  void State();
 private:
   Sprite title;
   Sprite background;
   Button play;
   Button deckBuilder;
   Button quit;
-  int frameCount, currentBackgroundSprite;
+  int frameCount, currentBackgroundSprite, state;
   string titlePath = "res/menu/title.png", bgPath = "res/menu/bgSheet.png", playPath = "res/menu/play.png", deckBuilderPath = "res/menu/deckBuilder.png", quitPath = "res/menu/quit.png";
   double lastDrawTime = 0, frameLength = 1000/24;
   sf::Clock clock1;

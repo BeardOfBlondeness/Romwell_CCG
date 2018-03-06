@@ -28,7 +28,7 @@ void Button::init(string path, int x, int y, int width, int height) {
 }
 
 void Button::Hover() {
-  pos = sf::Mouse::getPosition();
+  pos = sf::Mouse::getPosition() - window.getPosition();
   if(pos.x > x && pos.y > y && pos.x < x+width && pos.y < y+height) {
     if(!isHovered) {
       setSize(1.1, 1.1);
