@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <iostream>
+#include "cards/DefaultCard.h"
 using namespace std;
 
 //Initiates the window and window events
@@ -15,6 +16,7 @@ sf::Event event;
 */
 int main()
 {
+    //DefaultCard p;
     srand (time(NULL));
     Menu m;
     window.setFramerateLimit(60);
@@ -27,6 +29,7 @@ int main()
         }
         window.clear();
         m.State();
+      //  p.Card::DrawCard();
         window.display();
     }
     return 0;

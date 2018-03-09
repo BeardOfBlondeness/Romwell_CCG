@@ -77,7 +77,6 @@ void Menu::IncrementBackgroundSprite() {
 *Selects the state for the game to be in, e.g. "in game" or "in deck builder"
 */
 void Menu::State() {
-  cout << state;
   if(state == 0) {
     DrawBackground();
     ButtonOperators();

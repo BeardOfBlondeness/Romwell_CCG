@@ -19,6 +19,16 @@ void Sprite::init(string path, int x, int y, int width, int height) {
 
 Sprite::Sprite(string path) {
     this->path = path;
+    x = 0;
+    y = 0;
+    InitiateSprite();
+}
+
+void Sprite::init(string path) {
+  this->path = path;
+  x = 0;
+  y = 0;
+  InitiateSprite();
 }
 
 Sprite::Sprite(string path, int x, int y) {

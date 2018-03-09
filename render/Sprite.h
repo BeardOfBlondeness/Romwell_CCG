@@ -11,6 +11,7 @@ public:
     Sprite(string path, int x, int y, int width, int height);
     void init(string path, int x, int y, int width, int height);
     void init(string path, int x, int y);
+    void init(string path);
     ~Sprite();
     void setRect(int x, int y, int width, int height);
     void InitiateSprite();
