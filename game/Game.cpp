@@ -38,6 +38,11 @@ Game::Game() {
     deck2Image[i].init("res/game/cardBack.png", 1649, 1180);
     deck2Image[i].setSize(deckScales, deckScales);
   }
+  if (!cardSound.openFromFile("res/game/cardSound.wav")){
+    std::cout << "Error..." << std::endl;
+  } else{
+    cardSound.setVolume(50);
+  }
   cardNum = 0;
 }
 
@@ -95,17 +100,20 @@ void Game::drawHands() {
   if(board1.size() > 0) {
     cout << "Its inside the if";
     for(int i = 0; i < board1.size(); i++) {
+      board1.at(i)->Card::Hover();
       board1.at(i)->Card::DrawCard();
     }
   }
   if(board2.size() > 0) {
     for(int i = 0; i < board2.size(); i++) {
+      board2.at(i)->Card::Hover();
       board2.at(i)->Card::DrawCard();
     }
   }
 }
 
 void Game::placeDecks() {
+  cardSound.play();
   if(entryAnimationDeck) {
     if(deck1Image[cardNum].getYPos() < 3)
       deck1Image[cardNum].setPos(deck1Image[cardNum].getXPos(), deck1Image[cardNum].getYPos()+80);
@@ -124,8 +132,10 @@ void Game::placeDecks() {
       deck2Image[cardNum].setPos(deck2Image[cardNum].getXPos(), 680);
       cardNum++;
       cout << "\n\n\n" << cardNum << " For 2";
-      if(cardNum >= 30)
+      if(cardNum >= 30) {
         gameBegin = false;
+        cardSound.stop();
+      }
     }
   }
 }

@@ -81,6 +81,7 @@ void Menu::State() {
     DrawBackground();
     ButtonOperators();
   }else if(state == 1) {
+    rain.stop();
     g.Run();
   }
 }

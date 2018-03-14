@@ -3,7 +3,7 @@
 #include "../cards/Card.h"
 #include "../cards/DefaultCard.h"
 #include <vector>
-
+#include <SFML/Audio.hpp>
 using namespace std;
 
 class Game {
@@ -33,4 +33,5 @@ private:
   Sprite boardImage;
   Sprite *deck1Image = new Sprite[deckSize-1];
   Sprite *deck2Image = new Sprite[deckSize-1];
+  sf::Music cardSound;
 };

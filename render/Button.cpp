@@ -29,18 +29,38 @@ void Button::init(string path, int x, int y, int width, int height) {
   originalY = y;
 }
 
+void Button::init(string path) {
+  Sprite::init(path);
+}
+
+void Button::setSize(float x, float y) {
+  renderSprite.setScale(x, y);
+  offsetX = (width*x)/20;
+  offsetY = (height*y)/20;
+  clickOffsetX = offsetX/2;
+  clickOffsetY = offsetY/2;
+}
+
+void Button::setPos(int xPos, int yPos) {
+  x = xPos;
+  y = yPos;
+  originalX = x;
+  originalY = y;
+  renderSprite.setPosition(xPos, yPos);
+}
+
 void Button::Hover() {
   pos = sf::Mouse::getPosition() - window.getPosition();
   if(pos.x > x && pos.y > y && pos.x < x+width && pos.y < y+height) {
     if(!isHovered) {
-      setSize(1.1, 1.1);
-      setPos(originalX-offsetX,originalY-offsetY);
+      Sprite::setSize(1.1, 1.1);
+      Sprite::setPos(originalX-offsetX,originalY-offsetY);
       isHovered = true;
     }
   } else {
     if(isHovered) {
-      setSize(1, 1);
-      setPos(originalX, originalY);
+      Sprite::setSize(1, 1);
+      Sprite::setPos(originalX, originalY);
       isHovered = false;
     }
   }

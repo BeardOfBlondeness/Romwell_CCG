@@ -19,14 +19,14 @@ void Card::init(string name, string rarity, int classType, int baseMana, int bas
 }
 
 void Card::initiateText() {
-  if(!poorRich.loadFromFile("res/fonts/PoorRichard.ttf"))
+  if(!poorRich.loadFromFile("res/fonts/PoorRichard.TTF"))
     cout << "Couldnt find font";
   nameImage.setFont(poorRich);
   nameImage.setString(name);
   nameImage.setCharacterSize(34);
   nameImage.setStyle(sf::Text::Bold);
   nameImage.setRotation(-32.0f);
-  nameImage.setFillColor(sf::Color::Black);
+  nameImage.setColor(sf::Color::Black);
   descImage.setFont(poorRich);
   descImage.setString(description);
   descImage.setCharacterSize(30);
@@ -42,11 +42,41 @@ void Card::initiateImage() {
   descImage.setPosition(x + 40, y + 250);
 }
 
+void Card::Damage(Card * card) {
+  card->setCurrentHealth(this->currentDamage);
+}
+
 void Card::setLocation(int x, int y) {
     nameImage.setPosition(x + 10*xScale , y + 50*yScale);
     descImage.setPosition(x + 40*xScale, y + 250*yScale);
     baseImage.setPos(x, y);
     cardImage.setPos(x, y);
+    originalX = x;
+    originalY = y;
+}
+
+void Card::setPosition(int x, int y) {
+      nameImage.setPosition(x + 10*xScale , y + 50*yScale);
+      descImage.setPosition(x + 40*xScale, y + 250*yScale);
+      baseImage.setPos(x, y);
+      cardImage.setPos(x, y);
+}
+
+void Card::Hover() {
+  pos = sf::Mouse::getPosition() - window.getPosition();
+  if(pos.x > originalX && pos.y > originalY && pos.x < originalX+(scaler*300) && pos.y < originalY+(scaler*420)) {
+    if(!isHovered) {
+      setSize(1.1*scaler, 1.1*scaler);
+      setPosition(originalX-offsetX,originalY-offsetY);
+      isHovered = true;
+    }
+  } else {
+    if(isHovered) {
+      setSize(scaler, scaler);
+      setPosition(originalX, originalY);
+      isHovered = false;
+    }
+  }
 }
 
 void Card::setSize(double x, double y) {
@@ -58,6 +88,10 @@ void Card::setSize(double x, double y) {
   descImage.setCharacterSize(30*xScale);
   baseImage.setSize(x, y);
   cardImage.setSize(x, y);
+  offsetX = (300*x)/20;
+  offsetY = (420*y)/20;
+  clickOffsetX = offsetX/2;
+  clickOffsetY = offsetY/2;
 }
 
 void Card::DrawCard() {
