@@ -15,9 +15,15 @@ void Card::init(string name, string rarity, int classType, int baseMana, int bas
   currentDamage = baseDamage;
   currentHealth = baseHealth;
   currentMana = baseMana;
+  damageString = to_string(baseDamage);
+  healthString = to_string(baseHealth);
+  healh
   initiateText();
 }
 
+string Card::to_string(int num) {
+ return static_cast<ostringstream*>( &(ostringstream() << num) )->str();
+}
 void Card::initiateText() {
   if(!poorRich.loadFromFile("res/fonts/PoorRichard.TTF"))
     cout << "Couldnt find font";
@@ -30,6 +36,11 @@ void Card::initiateText() {
   descImage.setFont(poorRich);
   descImage.setString(description);
   descImage.setCharacterSize(30);
+  damageImage.setFont(poorRich);
+  damageImage.setString(damageString);
+  damageImage.setCharacterSize(38);
+  healthImage.setFont(poorRich);
+  
 }
 
 void Card::initiateImage() {
@@ -40,6 +51,7 @@ void Card::initiateImage() {
   int y = baseImage.getYPos();
   nameImage.setPosition(x + 10 , y + 50);
   descImage.setPosition(x + 40, y + 250);
+  damageImage.setPosition(x + 43, y + 346);
 }
 
 void Card::Damage(Card * card) {
@@ -49,6 +61,7 @@ void Card::Damage(Card * card) {
 void Card::setLocation(int x, int y) {
     nameImage.setPosition(x + 10*xScale , y + 50*yScale);
     descImage.setPosition(x + 40*xScale, y + 250*yScale);
+    damageImage.setPosition(x + 43*xScale, y + 346*yScale);
     baseImage.setPos(x, y);
     cardImage.setPos(x, y);
     originalX = x;
@@ -58,6 +71,7 @@ void Card::setLocation(int x, int y) {
 void Card::setPosition(int x, int y) {
       nameImage.setPosition(x + 10*xScale , y + 50*yScale);
       descImage.setPosition(x + 40*xScale, y + 250*yScale);
+      damageImage.setPosition(x+43*xScale, y+346*yScale);
       baseImage.setPos(x, y);
       cardImage.setPos(x, y);
 }
@@ -84,8 +98,10 @@ void Card::setSize(double x, double y) {
   yScale = y;
   nameImage.setPosition(x + 10*xScale , y + 50*yScale);
   descImage.setPosition(x + 40*xScale, y + 250*yScale);
+  damageImage.setPosition(x + 43*xScale, y + 346*yScale);
   nameImage.setCharacterSize(34*xScale);
   descImage.setCharacterSize(30*xScale);
+  damageImage.setCharacterSize(38*xScale);
   baseImage.setSize(x, y);
   cardImage.setSize(x, y);
   offsetX = (300*x)/20;
@@ -103,6 +119,7 @@ void Card::DrawCard() {
   cout << "drawn the name";
   window.draw(descImage);
   cout << "drawn the desc";
+  window.draw(damageImage);
 }
 
 int Card::getBaseDamage() {

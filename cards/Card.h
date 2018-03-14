@@ -3,6 +3,7 @@
 #include "../render/Sprite.h"
 #include "../render/Button.h"
 #include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -29,6 +30,7 @@ public:
   string getName();
 protected:
   void initiateText();
+  string to_string(int num);
   int originalX;
   int originalY;
   int offsetX;
@@ -38,8 +40,10 @@ protected:
   bool isHovered = false, mouseDown = false;
   sf::Text nameImage;
   sf::Text descImage;
+  sf::Text damageImage;
+  sf::Text healthImage;
   sf::Font poorRich;
-  string name, rarity, imagePath, description;
+  string name, rarity, imagePath, description, damageString, healthString;
   int classType, baseMana, currentMana, baseHealth, currentHealth, baseDamage, currentDamage;
   Sprite cardImage, baseImage;
   double xScale, yScale;
