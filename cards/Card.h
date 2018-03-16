@@ -27,9 +27,12 @@ public:
   void Damage(Card * card);
   void setPosition(int x, int y);
   void Hover();
+  int getYPos();
+  int getXPos();
   string getName();
 protected:
   void initiateText();
+  void setRelativePositions(int x, int y);
   string to_string(int num);
   int originalX;
   int originalY;

@@ -19,6 +19,15 @@ Menu::Menu() {
     rain.setVolume(50);
     rain.play();
   }
+  std::cout << "about to init my dude";
+  TopHat g2[30];
+  TopHat g1[30];
+
+  for(int i = 0; i < 30; i++) {
+    g2[i] = * new TopHat();
+    g1[i] = * new TopHat();
+  }
+  g.init(g2, g1);
 }
 
 Menu::~Menu() {

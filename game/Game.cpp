@@ -5,28 +5,19 @@ Game::Game(Card deck1[], Card deck2[]) {
   std::cout << "Creating game";
   this->deck1 = randomiseDeckOrder(deck1);
   this->deck2 = randomiseDeckOrder(deck2);
-  //board1.push_back();
-  //board2.push_back(deck2[0]);
-  boardImage.init("res/game/background.png", 0, 0, 1920, 1080);
-  for(int i = 0; i < deckSize-1; i++) {
-    deck1Image[i].init("res/game/cardBack.png", 1700, -410);
-    deck1Image[i].setSize(deckScales, deckScales);
-    deck2Image[i].init("res/game/cardBack.png", 1700, 1480);
-    deck2Image[i].setSize(deckScales, deckScales);
+  for(int i = 0; i < 5; i++) {
+    hand1.push_back(deck1[i]);
+    hand2.push_back(deck2[i]);
+    hand1.at(i).setSize(deckScales, deckScales);
+    hand2.at(i).setSize(deckScales, deckScales);
+    hand1.at(i).setLocation(xBoard+(i*250), yHand);
+    hand2.at(i).setLocation(xBoard+(i*250), yEnemyHand);
   }
-  entryAnimationDeck = true;
-  cardNum = 0;
-  gameBegin = true;
-}
-
-/*
-*TODO delete this
-*/
-Game::Game() {
   board1.push_back(new DefaultCard());
   board2.push_back(new DefaultCard());
   boardImage.init("res/game/background.png", 0, 0, 1920, 1080);
   gameBegin = true;
+  giveHands = false;
   entryAnimationDeck = true;
   board1.at(0)->setSize(deckScales, deckScales);
   board2.at(0)->setSize(deckScales, deckScales);
@@ -44,6 +35,81 @@ Game::Game() {
     cardSound.setVolume(50);
   }
   cardNum = 0;
+}
+
+/*
+* TODO fix the BAD ALLOC for deck1 (maybe make them pointerS?)
+*/
+void Game::init(Card deck1[30], Card deck2[30]) {
+  cout << "beginning init";
+  //this->deck1 = randomiseDeckOrder(deck1);
+  cout << "randomised deck1";
+  //this->deck2 = randomiseDeckOrder(deck2);
+  cout << "randomised deck2";
+    cout << endl << endl << endl << "THIS IS 2s name:" << deck1[1].getName();
+  for(int i = 0; i < 5; i++) {
+    hand1.push_back(deck1[i]);
+      cout << "pushing back";
+    cout << endl << endl << endl << "THIS IS HAND1S name:" << hand1.at(i).getName();
+    hand2.push_back(deck2[i]);
+      cout << endl << endl << endl << "THIS IS HAND2S SIZE: " << hand2.size();
+    cout << "pushed back for " << i << endl;
+    hand1.at(i).setSize(deckScales, deckScales);
+    hand2.at(i).setSize(deckScales, deckScales);
+    cout << " set Sizes for " << i << endl;
+    hand1.at(i).setLocation(xBoard+(i*250), yHand);
+    hand2.at(i).setLocation(xBoard+(i*250), yEnemyHand);
+    cout << " set locations for " << i << endl;
+  }
+  board1.push_back(new DefaultCard());
+  board2.push_back(new DefaultCard());
+  boardImage.init("res/game/background.png", 0, 0, 1920, 1080);
+  gameBegin = true;
+  giveHands = false;
+  entryAnimationDeck = true;
+  board1.at(0)->setSize(deckScales, deckScales);
+  board2.at(0)->setSize(deckScales, deckScales);
+  board1.at(0)->setLocation(xBoard, yEnemyBoard);
+  board2.at(0)->setLocation(xBoard, yYourBoard);
+  for(int i = 0; i < deckSize-1; i++) {
+    deck1Image[i].init("res/game/cardBack.png", 1653, -400);
+    deck1Image[i].setSize(deckScales, deckScales);
+    deck2Image[i].init("res/game/cardBack.png", 1649, 1180);
+    deck2Image[i].setSize(deckScales, deckScales);
+  }
+  if (!cardSound.openFromFile("res/game/cardSound.wav")){
+    std::cout << "Error..." << std::endl;
+  } else{
+    cardSound.setVolume(50);
+  }
+  cardNum = 0;
+}
+/*
+*TODO delete this
+*/
+Game::Game() {
+  /*board1.push_back(new DefaultCard());
+  board2.push_back(new DefaultCard());
+  boardImage.init("res/game/background.png", 0, 0, 1920, 1080);
+  gameBegin = true;
+  giveHands = false;
+  entryAnimationDeck = true;
+  board1.at(0)->setSize(deckScales, deckScales);
+  board2.at(0)->setSize(deckScales, deckScales);
+  board1.at(0)->setLocation(xBoard, -500);
+  board2.at(0)->setLocation(xBoard, 2420);
+  for(int i = 0; i < deckSize-1; i++) {
+    deck1Image[i].init("res/game/cardBack.png", 1653, -400);
+    deck1Image[i].setSize(deckScales, deckScales);
+    deck2Image[i].init("res/game/cardBack.png", 1649, 1180);
+    deck2Image[i].setSize(deckScales, deckScales);
+  }
+  if (!cardSound.openFromFile("res/game/cardSound.wav")){
+    std::cout << "Error..." << std::endl;
+  } else{
+    cardSound.setVolume(50);
+  }
+  cardNum = 0;*/
 }
 
 Game::~Game() {
@@ -72,11 +138,10 @@ Card* Game::randomiseDeckOrder(Card deck[]) {
 
 Card* Game::getDeck(int deck) {
   Card* retDeck;
-  if(deck == 1) {
+  if(deck == 1)
     retDeck = deck1;
-  }else {
+  else
     retDeck = deck2;
-  }
   return retDeck;
 }
 
@@ -88,17 +153,37 @@ bool Game::vectorContains(vector<Card> vec, Card val) {
 }
 
 void Game::Run() {
+  cout << endl << "drawing board image!";
   boardImage.Draw();
+  cout << endl << "beginning game";
   if(gameBegin)
     placeDecks();
-  drawDecks();
+  else if(giveHands)
+    placeHands();
+  cout << endl << "drawing hands";
   drawHands();
+  cout << endl << "drawing decks";
+  drawDecks();
+  cout << endl << "drawing boards";
+  drawBoards();
 }
 
 void Game::drawHands() {
-  cout << "SIZE: " << board1.size();
+  cout << endl << "SIZE of hand1: " << hand1.size();
+  if(hand1.size() > 0) {
+    for(int i = 0; i < hand1.size(); i++) {
+      cout << endl << "Drawing card for1 " << i;
+      hand1.at(i).DrawCard();
+    }
+    for(int i = 0; i < hand2.size(); i++) {
+      cout << endl << "Drawing card for2 " << i;
+      hand2.at(i).DrawCard();
+    }
+  }
+}
+
+void Game::drawBoards() {
   if(board1.size() > 0) {
-    cout << "Its inside the if";
     for(int i = 0; i < board1.size(); i++) {
       board1.at(i)->Card::Hover();
       board1.at(i)->Card::DrawCard();
@@ -134,9 +219,21 @@ void Game::placeDecks() {
       cout << "\n\n\n" << cardNum << " For 2";
       if(cardNum >= 30) {
         gameBegin = false;
+        giveHands = true;
         cardSound.stop();
       }
     }
+  }
+}
+
+void Game::placeHands() {
+  for(int i = 0; i < 5; i++) {
+    if(hand1.at(i).getYPos() < yEnemyHand)
+      hand1.at(i).setLocation(hand1.at(i).getXPos(), hand1.at(i).getYPos() + 10);
+    if(hand2.at(i).getYPos() > yHand)
+      hand2.at(i).setLocation(hand2.at(i).getXPos(), hand1.at(i).getYPos() - 10);
+    else
+      giveHands = false;
   }
 }
 

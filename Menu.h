@@ -3,7 +3,7 @@
 #include "render/Button.h"
 #include "game/Game.h"
 #include <SFML/Audio.hpp>
-
+#include "cards/TopHat.h"
 class Menu {
 public:
   Menu();

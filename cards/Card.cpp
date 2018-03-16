@@ -17,13 +17,13 @@ void Card::init(string name, string rarity, int classType, int baseMana, int bas
   currentMana = baseMana;
   damageString = to_string(baseDamage);
   healthString = to_string(baseHealth);
-  healh
   initiateText();
 }
 
 string Card::to_string(int num) {
  return static_cast<ostringstream*>( &(ostringstream() << num) )->str();
 }
+
 void Card::initiateText() {
   if(!poorRich.loadFromFile("res/fonts/PoorRichard.TTF"))
     cout << "Couldnt find font";
@@ -38,20 +38,18 @@ void Card::initiateText() {
   descImage.setCharacterSize(30);
   damageImage.setFont(poorRich);
   damageImage.setString(damageString);
-  damageImage.setCharacterSize(38);
+  damageImage.setCharacterSize(45);
   healthImage.setFont(poorRich);
-  
+  healthImage.setString(healthString);
+  healthImage.setCharacterSize(45);
 }
 
 void Card::initiateImage() {
-  std::cout << "Path: " << imagePath;
   baseImage.init("res/game/cardBackground.png");
   cardImage.init(imagePath);
   int x = baseImage.getXPos();
   int y = baseImage.getYPos();
-  nameImage.setPosition(x + 10 , y + 50);
-  descImage.setPosition(x + 40, y + 250);
-  damageImage.setPosition(x + 43, y + 346);
+  setRelativePositions(x, y);
 }
 
 void Card::Damage(Card * card) {
@@ -59,9 +57,7 @@ void Card::Damage(Card * card) {
 }
 
 void Card::setLocation(int x, int y) {
-    nameImage.setPosition(x + 10*xScale , y + 50*yScale);
-    descImage.setPosition(x + 40*xScale, y + 250*yScale);
-    damageImage.setPosition(x + 43*xScale, y + 346*yScale);
+    setRelativePositions(x, y);
     baseImage.setPos(x, y);
     cardImage.setPos(x, y);
     originalX = x;
@@ -69,11 +65,16 @@ void Card::setLocation(int x, int y) {
 }
 
 void Card::setPosition(int x, int y) {
-      nameImage.setPosition(x + 10*xScale , y + 50*yScale);
-      descImage.setPosition(x + 40*xScale, y + 250*yScale);
-      damageImage.setPosition(x+43*xScale, y+346*yScale);
+      setRelativePositions(x, y);
       baseImage.setPos(x, y);
       cardImage.setPos(x, y);
+}
+
+void Card::setRelativePositions(int x, int y) {
+  nameImage.setPosition(x + 10*xScale , y + 50*yScale);
+  descImage.setPosition(x + 40*xScale, y + 250*yScale);
+  damageImage.setPosition(x+41*xScale, y+340*yScale);
+  healthImage.setPosition(x+230*xScale, y+343*yScale);
 }
 
 void Card::Hover() {
@@ -96,12 +97,11 @@ void Card::Hover() {
 void Card::setSize(double x, double y) {
   xScale = x;
   yScale = y;
-  nameImage.setPosition(x + 10*xScale , y + 50*yScale);
-  descImage.setPosition(x + 40*xScale, y + 250*yScale);
-  damageImage.setPosition(x + 43*xScale, y + 346*yScale);
+  setRelativePositions(x, y);
   nameImage.setCharacterSize(34*xScale);
   descImage.setCharacterSize(30*xScale);
-  damageImage.setCharacterSize(38*xScale);
+  damageImage.setCharacterSize(45*xScale);
+  healthImage.setCharacterSize(45*xScale);
   baseImage.setSize(x, y);
   cardImage.setSize(x, y);
   offsetX = (300*x)/20;
@@ -112,14 +112,11 @@ void Card::setSize(double x, double y) {
 
 void Card::DrawCard() {
   cardImage.Draw();
-  cout << "Drawn the image";
   baseImage.Draw();
-  cout << "drawn the base image";
   window.draw(nameImage);
-  cout << "drawn the name";
   window.draw(descImage);
-  cout << "drawn the desc";
   window.draw(damageImage);
+  window.draw(healthImage);
 }
 
 int Card::getBaseDamage() {
@@ -160,4 +157,12 @@ void Card::setCurrentHealth(int health) {
 
 string Card::getName() {
   return name;
+}
+
+int Card::getYPos() {
+  return baseImage.getYPos();
+}
+
+int Card::getXPos() {
+  return baseImage.getXPos();
 }

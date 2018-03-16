@@ -4,14 +4,14 @@ int Button::isClicked() {
   if(isHovered && sf::Mouse::isButtonPressed(sf::Mouse::Left)) {
     if(!mouseDown) {
       setSize(1.05, 1.05);
-      setPos(x-clickOffsetX, y-clickOffsetY);
+      Sprite::setPos(originalX-clickOffsetX, originalY-clickOffsetY);
       mouseDown = true;
       return 1;
     }
   } else {
     if(mouseDown && isHovered) {
       setSize(1.1, 1.1);
-      setPos(x-offsetX, y-offsetY);
+      Sprite::setPos(originalX-offsetX, originalY-offsetY);
       return 2;
     }
     mouseDown = false;
