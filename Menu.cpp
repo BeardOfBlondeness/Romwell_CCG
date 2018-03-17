@@ -19,15 +19,21 @@ Menu::Menu() {
     rain.setVolume(50);
     rain.play();
   }
-  std::cout << "about to init my dude";
-  TopHat g2[30];
-  TopHat g1[30];
-
+  std::cout << "About to make decks" << endl;
+  Card *deck2[30];
+  Card *deck1[30];
+  std::cout << "Made decks" << endl;
   for(int i = 0; i < 30; i++) {
-    g2[i] = * new TopHat();
-    g1[i] = * new TopHat();
+    TopHat temp();
+    deck2[i] = new TopHat();
+    deck1[i] = new TopHat();
   }
-  g.init(g2, g1);
+  std::cout << endl << endl << "Displaying COntents Prior: " << endl;
+  for(int i = 0; i < 30; i++) {
+    cout << deck1[i]->getName() << endl;
+  }
+  g.init(deck1, deck2);
+
 }
 
 Menu::~Menu() {

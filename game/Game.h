@@ -11,7 +11,7 @@ class Game {
 public:
   Game(Card deck1[], Card deck2[]);
   Game();
-  void init(Card deck1[], Card deck2[]);
+  void init(Card* deck1[], Card* deck2[]);
   ~Game();
   bool WaitForTurn(bool playerTurn);
   Card* getDeck(int deck);
@@ -30,13 +30,13 @@ private:
   const int xBoard = 400;
   const int yHand = 700;
   const int yEnemyHand = -100;
-  Card *deck1, *deck2;
+  Card deck1[], deck2[];
   Card *randomisedOrder = new Card[deckSize];
   int cardNum, deck1Counter, deck2Counter;
   const double deckScales = 1/1.5;
   bool playerTurn, gameBegin, giveHands, entryAnimationDeck;
   vector<Card*> board1, board2;
-  vector<Card> hand1, hand2;
+  vector<Card*> hand1, hand2;
   Sprite boardImage;
   Sprite *deck1Image = new Sprite[deckSize-1];
   Sprite *deck2Image = new Sprite[deckSize-1];

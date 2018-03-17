@@ -20,6 +20,23 @@ void Card::init(string name, string rarity, int classType, int baseMana, int bas
   initiateText();
 }
 
+Card::Card(string name, string rarity, int classType, int baseMana, int baseHealth, int baseDamage, string imagePath, string description) {
+  this->name = name;
+  this->rarity = rarity;
+  this->classType = classType;
+  this->baseMana = baseMana;
+  this->baseHealth = baseHealth;
+  this->baseDamage = baseDamage;
+  this->imagePath = imagePath;
+  this->description = description;
+  currentDamage = baseDamage;
+  currentHealth = baseHealth;
+  currentMana = baseMana;
+  damageString = to_string(baseDamage);
+  healthString = to_string(baseHealth);
+  initiateText();
+}
+
 string Card::to_string(int num) {
  return static_cast<ostringstream*>( &(ostringstream() << num) )->str();
 }

@@ -2,16 +2,16 @@
 #include "Game.h"
 
 Game::Game(Card deck1[], Card deck2[]) {
-  std::cout << "Creating game";
+  /*std::cout << "Creating game";
   this->deck1 = randomiseDeckOrder(deck1);
   this->deck2 = randomiseDeckOrder(deck2);
   for(int i = 0; i < 5; i++) {
     hand1.push_back(deck1[i]);
     hand2.push_back(deck2[i]);
-    hand1.at(i).setSize(deckScales, deckScales);
-    hand2.at(i).setSize(deckScales, deckScales);
-    hand1.at(i).setLocation(xBoard+(i*250), yHand);
-    hand2.at(i).setLocation(xBoard+(i*250), yEnemyHand);
+    hand1.at(i)->setSize(deckScales, deckScales);
+    hand2.at(i)->setSize(deckScales, deckScales);
+    hand1.at(i)->setLocation(xBoard+(i*250), yHand);
+    hand2.at(i)->setLocation(xBoard+(i*250), yEnemyHand);
   }
   board1.push_back(new DefaultCard());
   board2.push_back(new DefaultCard());
@@ -34,31 +34,36 @@ Game::Game(Card deck1[], Card deck2[]) {
   } else{
     cardSound.setVolume(50);
   }
-  cardNum = 0;
+  cardNum = 0;*/
 }
 
 /*
 * TODO fix the BAD ALLOC for deck1 (maybe make them pointerS?)
 */
-void Game::init(Card deck1[30], Card deck2[30]) {
+void Game::init(Card* deck1[], Card* deck2[]) {
+  std::cout << endl << endl << "Displaying COntents After: " << endl;
+  for(int i = 0; i < 30; i++) {
+    cout << deck1[i]->getName() << endl;
+  }
   cout << "beginning init";
   //this->deck1 = randomiseDeckOrder(deck1);
   cout << "randomised deck1";
   //this->deck2 = randomiseDeckOrder(deck2);
   cout << "randomised deck2";
-    cout << endl << endl << endl << "THIS IS 2s name:" << deck1[1].getName();
+  cout << endl << endl << endl << "THIS IS 2s name:" << deck1[1]->getName();
   for(int i = 0; i < 5; i++) {
+    cout << "BEGINNING FOR LOOP" << endl;
     hand1.push_back(deck1[i]);
-      cout << "pushing back";
-    cout << endl << endl << endl << "THIS IS HAND1S name:" << hand1.at(i).getName();
+    cout << "pushing back";
+    cout << endl << endl << endl << "THIS IS HAND1S name:" << hand1.at(i)->getName();
     hand2.push_back(deck2[i]);
-      cout << endl << endl << endl << "THIS IS HAND2S SIZE: " << hand2.size();
+    cout << endl << endl << endl << "THIS IS HAND2S SIZE: " << hand2.size();
     cout << "pushed back for " << i << endl;
-    hand1.at(i).setSize(deckScales, deckScales);
-    hand2.at(i).setSize(deckScales, deckScales);
+    hand1.at(i)->setSize(deckScales, deckScales);
+    hand2.at(i)->setSize(deckScales, deckScales);
     cout << " set Sizes for " << i << endl;
-    hand1.at(i).setLocation(xBoard+(i*250), yHand);
-    hand2.at(i).setLocation(xBoard+(i*250), yEnemyHand);
+    hand1.at(i)->setLocation(xBoard+(i*250), yHand);
+    hand2.at(i)->setLocation(xBoard+(i*250), yEnemyHand);
     cout << " set locations for " << i << endl;
   }
   board1.push_back(new DefaultCard());
@@ -84,33 +89,8 @@ void Game::init(Card deck1[30], Card deck2[30]) {
   }
   cardNum = 0;
 }
-/*
-*TODO delete this
-*/
-Game::Game() {
-  /*board1.push_back(new DefaultCard());
-  board2.push_back(new DefaultCard());
-  boardImage.init("res/game/background.png", 0, 0, 1920, 1080);
-  gameBegin = true;
-  giveHands = false;
-  entryAnimationDeck = true;
-  board1.at(0)->setSize(deckScales, deckScales);
-  board2.at(0)->setSize(deckScales, deckScales);
-  board1.at(0)->setLocation(xBoard, -500);
-  board2.at(0)->setLocation(xBoard, 2420);
-  for(int i = 0; i < deckSize-1; i++) {
-    deck1Image[i].init("res/game/cardBack.png", 1653, -400);
-    deck1Image[i].setSize(deckScales, deckScales);
-    deck2Image[i].init("res/game/cardBack.png", 1649, 1180);
-    deck2Image[i].setSize(deckScales, deckScales);
-  }
-  if (!cardSound.openFromFile("res/game/cardSound.wav")){
-    std::cout << "Error..." << std::endl;
-  } else{
-    cardSound.setVolume(50);
-  }
-  cardNum = 0;*/
-}
+
+Game::Game(){}
 
 Game::~Game() {
   std::cout << "Deleting initialised memory space for Game";
@@ -173,11 +153,11 @@ void Game::drawHands() {
   if(hand1.size() > 0) {
     for(int i = 0; i < hand1.size(); i++) {
       cout << endl << "Drawing card for1 " << i;
-      hand1.at(i).DrawCard();
+      hand1.at(i)->DrawCard();
     }
     for(int i = 0; i < hand2.size(); i++) {
       cout << endl << "Drawing card for2 " << i;
-      hand2.at(i).DrawCard();
+      hand2.at(i)->DrawCard();
     }
   }
 }
@@ -228,10 +208,10 @@ void Game::placeDecks() {
 
 void Game::placeHands() {
   for(int i = 0; i < 5; i++) {
-    if(hand1.at(i).getYPos() < yEnemyHand)
-      hand1.at(i).setLocation(hand1.at(i).getXPos(), hand1.at(i).getYPos() + 10);
-    if(hand2.at(i).getYPos() > yHand)
-      hand2.at(i).setLocation(hand2.at(i).getXPos(), hand1.at(i).getYPos() - 10);
+    if(hand1.at(i)->getYPos() < yEnemyHand)
+      hand1.at(i)->setLocation(hand1.at(i)->getXPos(), hand1.at(i)->getYPos() + 10);
+    if(hand2.at(i)->getYPos() > yHand)
+      hand2.at(i)->setLocation(hand2.at(i)->getXPos(), hand1.at(i)->getYPos() - 10);
     else
       giveHands = false;
   }

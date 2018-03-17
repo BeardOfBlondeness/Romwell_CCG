@@ -10,6 +10,7 @@ using namespace std;
 class Card {
 public:
   Card();
+  Card(string name, string rarity, int classType, int baseMana, int baseHealth, int baseDamage, string imagePath, string description);
   void init(string name, string rarity, int classType, int baseMana, int baseHealth, int baseDamage, string imagePath, string description);
   int getBaseDamage();
   int getCurrentDamage();

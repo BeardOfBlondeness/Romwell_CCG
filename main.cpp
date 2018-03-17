@@ -1,3 +1,7 @@
+#pragma GCC diagnostic push
+// save the current state for diagnostics
+
+#pragma GCC diagnostic ignored "-Wunused-parameter"
 #define SFML_STATIC
 #include "render/Sprite.h"
 #include "Menu.h"

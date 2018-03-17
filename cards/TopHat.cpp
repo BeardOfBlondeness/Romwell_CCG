@@ -1,6 +1,11 @@
 #include "TopHat.h"
 
-TopHat::TopHat() {
-  this->init("TopHat", "common", 0, 0, 2, 1, path, desc);
+TopHat::TopHat() : Card() {
+  this->Card::init("TopHat", "common", 0, 0, 2, 1, path, desc);
+  this->initiateImage();
+}
+
+void TopHat::init() {
+  this->Card::init("TopHat", "common", 0, 0, 2, 1, path, desc);
   this->initiateImage();
 }
