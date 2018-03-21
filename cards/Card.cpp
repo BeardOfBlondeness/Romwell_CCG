@@ -42,21 +42,23 @@ string Card::to_string(int num) {
 }
 
 void Card::initiateText() {
-  if(!poorRich.loadFromFile("res/fonts/PoorRichard.TTF"))
+  if(!poorRich.loadFromFile("res/fonts/PoorRichard.TTF")) {
     cout << "Couldnt find font";
-  nameImage.setFont(poorRich);
+  } else {
+    nameImage.setFont(poorRich);
+    descImage.setFont(poorRich);
+    damageImage.setFont(poorRich);
+    healthImage.setFont(poorRich);
+  }
   nameImage.setString(name);
   nameImage.setCharacterSize(34);
   nameImage.setStyle(sf::Text::Bold);
   nameImage.setRotation(-32.0f);
   nameImage.setColor(sf::Color::Black);
-  descImage.setFont(poorRich);
   descImage.setString(description);
   descImage.setCharacterSize(30);
-  damageImage.setFont(poorRich);
   damageImage.setString(damageString);
   damageImage.setCharacterSize(45);
-  healthImage.setFont(poorRich);
   healthImage.setString(healthString);
   healthImage.setCharacterSize(45);
 }

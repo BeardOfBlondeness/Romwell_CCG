@@ -27,8 +27,8 @@ private:
   static const int deckSize = 31;
   const int yEnemyBoard = 225;
   const int yYourBoard = 550;
-  const int xBoard = 400;
-  const int yHand = 700;
+  const int xBoard = 320;
+  const int yHand = 900;
   const int yEnemyHand = -100;
   Card deck1[], deck2[];
   Card *randomisedOrder = new Card[deckSize];

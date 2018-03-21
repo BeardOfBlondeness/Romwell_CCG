@@ -8,5 +8,5 @@ public:
   void init();
 private:
   string path = "res/game/cards/topHat.png";
-  string desc = "Increase your Default cards damage by 1";
+  string desc = "Icrement damage";
 };

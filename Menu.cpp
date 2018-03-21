@@ -24,7 +24,6 @@ Menu::Menu() {
   Card *deck1[30];
   std::cout << "Made decks" << endl;
   for(int i = 0; i < 30; i++) {
-    TopHat temp();
     deck2[i] = new TopHat();
     deck1[i] = new TopHat();
   }
@@ -61,10 +60,10 @@ void Menu::ButtonOperators() {
   background.Draw();
   title.Draw();
   play.Draw();
-  deckBuilder.Draw();
+  //deckBuilder.Draw();
   quit.Draw();
   if(play.isClicked()==2)state=1;
-  if(deckBuilder.isClicked()==2)state=2;
+  //if(deckBuilder.isClicked()==2)state=2;
   if(quit.isClicked()==2)window.close();
 }
 

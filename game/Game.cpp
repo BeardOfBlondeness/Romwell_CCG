@@ -100,6 +100,9 @@ Game::~Game() {
 }
 
 bool Game::WaitForTurn(bool playerTurn) {
+  if(playerTurn) {
+
+  }
   return 0;
 }
 
@@ -154,10 +157,12 @@ void Game::drawHands() {
     for(int i = 0; i < hand1.size(); i++) {
       cout << endl << "Drawing card for1 " << i;
       hand1.at(i)->DrawCard();
+      hand1.at(i)->Hover();
     }
     for(int i = 0; i < hand2.size(); i++) {
       cout << endl << "Drawing card for2 " << i;
       hand2.at(i)->DrawCard();
+      hand2.at(i)->Hover();
     }
   }
 }
